@@ -1,9 +1,7 @@
 import subprocess as sb_p
-import tkinter as tk
-import registerVoter as regV
+import tkinter as tK
 import admFunc as adFunc
 from tkinter import *
-from registerVoter import *
 from admFunc import *
 
 
@@ -22,7 +20,7 @@ def AdminHome(root,frame1,frame3):
     runServer = Button(frame1, text="Run Server", width=15, command = lambda: sb_p.call('start python Server.py', shell=True))
 
     #Voter Login
-    registerVoter = Button(frame1, text="Register Voter", width=15, command = lambda: regV.Register(root, frame1))
+    #cand_list= Button(frame1, text="Register Voter", width=15, command = lambda: regV.Register(root, frame1))
 
     #Show Votes
     showVotes = Button(frame1, text="Show Votes", width=15, command = lambda: adFunc.showVotes(root, frame1))
@@ -35,7 +33,7 @@ def AdminHome(root,frame1,frame3):
     Label(frame1, text="").grid(row = 6,column = 0)
     Label(frame1, text="").grid(row = 8,column = 0)
     runServer.grid(row = 3, column = 1, columnspan = 2)
-    registerVoter.grid(row = 5, column = 1, columnspan = 2)
+    #registerVoter.grid(row = 5, column = 1, columnspan = 2)
     showVotes.grid(row = 7, column = 1, columnspan = 2)
     # reset.grid(row = 9, column = 1, columnspan = 2)
 
@@ -45,7 +43,7 @@ def AdminHome(root,frame1,frame3):
 
 def log_admin(root,frame1,admin_ID,password):
 
-    if(admin_ID=="Admin" and password=="admin"):
+    if(admin_ID=="Admin" and password=="adminn"):
         frame3 = root.winfo_children()[1]
         AdminHome(root, frame1, frame3)
     else:

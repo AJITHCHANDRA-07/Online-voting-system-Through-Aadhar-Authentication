@@ -2,6 +2,8 @@ import tkinter as tk
 import socket
 from tkinter import *
 from VotingPage import votingPg
+from pathlib import Path
+Path=Path("database")
 
 def establish_connection():
     host = socket.gethostname()
@@ -23,8 +25,8 @@ def failed_return(root,frame1,client_socket,message):
     Label(frame1, text=message, font=('Helvetica', 12, 'bold')).grid(row = 1, column = 1)
     client_socket.close()
 
-def log_server(root,frame1,client_socket,voter_ID,password):
-    message = voter_ID + " " + password
+def log_server(root,frame1,client_socket,AadharID,password):
+    message =AadharID + " " + password
     client_socket.send(message.encode()) #2
 
     message = client_socket.recv(1024) #Authenticatication message
@@ -60,19 +62,19 @@ def voterLogin(root,frame1):
 
     Label(frame1, text="Voter Login", font=('Helvetica', 18, 'bold')).grid(row = 0, column = 2, rowspan=1)
     Label(frame1, text="").grid(row = 1,column = 0)
-    Label(frame1, text="Voter ID:      ", anchor="e", justify=LEFT).grid(row = 2,column = 0)
+    Label(frame1, text="AadharID:      ", anchor="e", justify=LEFT).grid(row = 2,column = 0)
     Label(frame1, text="Password:   ", anchor="e", justify=LEFT).grid(row = 3,column = 0)
 
-    voter_ID= tk.StringVar()
-    name = tk.StringVar()
+    AadharID= tk.StringVar()
+    #name = tk.StringVar()
     password = tk.StringVar()
 
-    e1 = Entry(frame1, textvariable = voter_ID)
+    e1 = Entry(frame1, textvariable = AadharID)
     e1.grid(row = 2,column = 2)
     e3 = Entry(frame1, textvariable = password, show = '*')
     e3.grid(row = 3,column = 2)
 
-    sub = Button(frame1, text="Login", width=10, command = lambda: log_server(root, frame1, client_socket, voter_ID.get(), password.get()))
+    sub = Button(frame1, text="Login", width=10, command = lambda: log_server(root, frame1, client_socket, AadharID.get(), password.get()))
     Label(frame1, text="").grid(row = 4,column = 0)
     sub.grid(row = 5, column = 3, columnspan = 2)
 
